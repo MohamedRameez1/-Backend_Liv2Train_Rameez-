@@ -1,0 +1,125 @@
+1. Clone the Repository:
+
+bash
+Copy code
+git clone https://github.com/your-username/liv2train-backend.git
+cd liv2train-backend
+
+
+2. Set Up PostgreSQL Database
+
+Install PostgreSQL
+Create a database named liv2train.
+Open src/main/resources/application.properties and set your PostgreSQL credentials:
+
+properties
+Copy code
+spring.datasource.url=jdbc:postgresql://localhost:5432/liv2train
+spring.datasource.username=postgres
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+3. Build and Run the Application
+
+Open the Project in your IDE
+
+Run the Application:
+
+In IntelliJ IDEA:
+
+Right-click on Liv2TrainApplication.java.
+Select Run 'Liv2TrainApplication'.
+In Eclipse:
+
+Right-click on your project.
+Select Run As → Spring Boot App.
+
+
+4. Test the APIs
+
+Using Postman:
+Test the POST API (/api/v1/training-centers):
+
+URL: http://localhost:8080/api/v1/training-centers
+
+Method: POST
+
+Headers:
+
+Content-Type: application/json
+Body (raw JSON):
+
+json
+Copy code
+{
+  "centerName": "ABC Training Center",
+  "centerCode": "ABC123456789",
+  "address": {
+    "detailedAddress": "123 Main St",
+    "city": "CityName",
+    "state": "StateName",
+    "pincode": "123456"
+  },
+  "studentCapacity": 100,
+  "coursesOffered": ["Java", "Spring"],
+  "contactEmail": "info@abctraining.com",
+  "contactPhone": "9876543210"
+}
+Expected Response:
+
+Status Code: 201 Created
+
+Body:
+
+json
+Copy code
+{
+  "id": 1,
+  "centerName": "ABC Training Center",
+  "centerCode": "ABC123456789",
+  "address": {
+    "detailedAddress": "123 Main St",
+    "city": "CityName",
+    "state": "StateName",
+    "pincode": "123456"
+  },
+  "studentCapacity": 100,
+  "coursesOffered": ["Java", "Spring"],
+  "createdOn": 1694095200000,
+  "contactEmail": "info@abctraining.com",
+  "contactPhone": "9876543210"
+}
+Test the GET API (/api/v1/training-centers):
+
+URL: http://localhost:8080/api/v1/training-centers
+
+Method: GET
+
+Expected Response:
+
+Status Code: 200 OK
+
+Body:
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "centerName": "ABC Training Center",
+    "centerCode": "ABC123456789",
+    "address": {
+      "detailedAddress": "123 Main St",
+      "city": "CityName",
+      "state": "StateName",
+      "pincode": "123456"
+    },
+    "studentCapacity": 100,
+    "coursesOffered": ["Java", "Spring"],
+    "createdOn": 1694095200000,
+    "contactEmail": "info@abctraining.com",
+    "contactPhone": "9876543210"
+  }
+]
